@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo:3.4
+    restart: unless-stopped
+    volumes:
+      - "mongodata:/data/db"
+  mariadb:
+    image:  mariadb:10.1
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=imperial
+      - MYSQL_DATABASE=eTRIKSdata
+    volumes:
+      - "mariadata:/var/lib/mysql"
+  biospeak-backend:
+    image: ehs/biospeak-backend
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - mariadb
+    volumes:
+      - "ehsappdata:/app_data"
+  biospeak-web:
+    image: ehs/biospeak-web
+    restart: unless-stopped
+    depends_on:
+      - biospeak-backend
+    volumes:
+      - "./nginx-server.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+      - "8889:80"
+  db-init:
+    image: ehs/db-init
+    volumes:
+      - "./db-init/:/docker-entrypoint-initdb.d/"
+    depends_on:
+      - mariadb
+      
+volumes:
+  mongodata:
+  mariadata:
+  ehsappdata:
