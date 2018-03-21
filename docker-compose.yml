@@ -27,6 +27,7 @@ services:
       - mariadb
     volumes:
       - "ptmappdata:/app_data"
+      - "../PlatformTM-server/dbinit:/app_data/dbinit"
   ptm-web:
     image: platformtm-web
     build:
@@ -39,15 +40,6 @@ services:
       - "./nginx-server.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - "8889:80"
-#  db-init:
-#    image: ptmdb-init
-#    build:
-#      context: PlatformTM-server
-#      dockerfile: Dockerfile.db-init
-#    volumes:
-#      - "./PlatformTM-initdb/:/docker-entrypoint-initdb.d/"
-#    depends_on:
-#      - mariadb
 
 volumes:
   mongodata:
