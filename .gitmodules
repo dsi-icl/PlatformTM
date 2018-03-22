@@ -1,6 +1,6 @@
 [submodule "PlatformTM-web"]
 	path = PlatformTM-web
-	url = git@github.com:dsi-icl/PlatformTM-web.git
+	url = https://github.com/dsi-icl/PlatformTM-web.git
 [submodule "PlatformTM-server"]
 	path = PlatformTM-server
-	url = git@github.com:dsi-icl/PlatformTM-server.git
+	url = https://github.com/dsi-icl/PlatformTM-server.git
