@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   ptm-server:
-    image: iemam/platformtm-server:unicorn
+    image: iemam/platformtm-server:unicorn1.5
     build:
       context: PlatformTM-server
       dockerfile: PlatformTM.API/Dockerfile
@@ -12,7 +12,7 @@ services:
     volumes:
       - "ptmappdata:/app_data"
   ptm-web:
-    image: iemam/platformtm-web:unicorn
+    image: iemam/platformtm-web:unicorn1.5
     build:
       context: PlatformTM-web
       dockerfile: Dockerfile
